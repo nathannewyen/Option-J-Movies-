@@ -1,0 +1,23 @@
+<div *ngFor="let movie of movieData">
+  <button class="btn btn-danger" (click)="onDelete(movie._id)">Delete movie</button>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Reviewer</th>
+        <th>Stars</th>
+        <th>Reviews</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let info of movie.reviews">
+        <td>{{info.name}}</td>
+        <td>{{info.stars}}</td>
+        <td>{{info.comment}}</td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteReview(info._id)">Delete Comment</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

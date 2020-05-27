@@ -1,0 +1,87 @@
+<div class="container">
+  <h3>Submit a movie and your review</h3>
+  <!-- Error -->
+  <p class="text-primary" *ngIf="newMovie.title.length < 3">
+    Title must be at least 3 characters long!
+  </p>
+
+  <p class="text-primary" *ngIf="newMovie.reviews.name.length < 3">
+    Name must be at least 3 characters long!
+  </p>
+  <p class="text-primary" *ngIf="newMovie.reviews.stars.length == 0">
+    Stars is required
+  </p>
+  <p class="text-primary" *ngIf="newMovie.reviews.comment.length < 3">
+    Comment is required
+  </p>
+
+  <div *ngIf="error">
+    <p class="text-danger">{{ error.title.properties.message }}</p>
+  </div>
+  <div *ngIf="errorReview">
+    <p class="text-danger">{{ error.properties.message }}</p>
+  </div>
+
+  <!-- End Error -->
+  <form>
+    <div class="form-group row">
+      <label for="title" class="col-sm-2 col-form-label">Movie Title</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          name="title"
+          [(ngModel)]="newMovie.title"
+          class="form-control"
+        />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="name" class="col-sm-2 col-form-label">Your Name</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          name="name"
+          [(ngModel)]="newMovie.reviews.name"
+          class="form-control"
+        />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="name" class="col-sm-2 col-form-label">Stars</label>
+      <div class="col-sm-10">
+        <select
+          class="custom-select"
+          name="stars"
+          [(ngModel)]="newMovie.reviews.stars"
+        >
+          <option selected="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="name" class="col-sm-2 col-form-label">Your Review</label>
+      <div class="col-sm-10">
+        <textarea
+          class="form-control"
+          name="comment"
+          [(ngModel)]="newMovie.reviews.comment"
+          rows="5"
+        ></textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-10 offset-sm-2">
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+          Submit
+        </button>
+        <button type="submit" class="btn btn-warning" [routerLink]="['']">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
